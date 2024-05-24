@@ -280,7 +280,7 @@ module T::Private::Methods::CallValidation
           method_sig,
           message,
           'Return value',
-          nil,
+          "#{method_sig.method.owner.name}##{method_sig.method_name}",
           method_sig.return_type,
           return_value,
         )

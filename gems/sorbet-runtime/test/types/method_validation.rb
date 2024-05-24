@@ -254,7 +254,7 @@ module Opus::Types::Test
         end
 
         lines = err.message.split("\n")
-        assert_equal("Return value: Expected type String, got type Symbol with value :foo", lines[0])
+        assert_equal("Return value '#foo': Expected type String, got type Symbol with value :foo", lines[0])
         # Note that the paths here could be relative or absolute depending on how this test was invoked.
         assert_match(%r{\ACaller: .*test.*/types/method_validation.rb:#{__LINE__ - 6}\z}, lines[1])
         assert_match(%r{\ADefinition: .*test.*/types/method_validation.rb:#{__LINE__ - 12}\z}, lines[2])
@@ -370,7 +370,7 @@ module Opus::Types::Test
           @mod.foo
         end
         assert_match(
-          "Return value: Expected type T::Array[String], got Opus::Types::Test::MethodValidationTest::TestEnumerable",
+          "Return value '#foo': Expected type T::Array[String], got Opus::Types::Test::MethodValidationTest::TestEnumerable",
           err.message.lines[0])
       end
 
@@ -430,7 +430,7 @@ module Opus::Types::Test
           err = assert_raises(TypeError) do
             klass.new.foo
           end
-          assert_match(/\AReturn value: Expected type String, got type Symbol/, err.message)
+          assert_match(/\AReturn value '#foo': Expected type String, got type Symbol/, err.message)
         end
       end
 
@@ -497,7 +497,7 @@ module Opus::Types::Test
           end
 
           T::Configuration.expects(:soft_assert_handler).with(
-            regexp_matches(/TypeError: Return value: Expected type Symbol, got type Integer with value 1\nCaller: .+\d\nDefinition: .+\d/),
+            regexp_matches(/TypeError: Return value '#foo': Expected type Symbol, got type Integer with value 1\nCaller: .+\d\nDefinition: .+\d/),
             notify: 'hello'
           )
           @mod.foo

@@ -37,7 +37,7 @@ module Opus::Types::Test
       e = assert_raises(TypeError) do
         TestReturns.notthrower
       end
-      assert_match(/Return value: Expected type T.noreturn, got type Integer/, e.message)
+      assert_match(/Return value '#notthrower': Expected type T.noreturn, got type Integer/, e.message)
     end
 
     it 'nils the return for void' do
